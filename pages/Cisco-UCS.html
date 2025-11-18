@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cisco UCS Documentation Hub – My Knowledge Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050712;
+      --card-bg: #0f1424;
+      --card-bg-soft: #141a30;
+      --accent: #2f7de1;
+      --accent-soft: #223a63;
+      --text-main: #f5f7ff;
+      --text-muted: #b5bedc;
+      --border-subtle: #262c45;
+      --border-strong: #3b4670;
+      --danger: #ff5a5f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #192446 0, #050712 55%, #000000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .back-link span {
+      font-size: 1rem;
+    }
+
+    header {
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 18px;
+    }
+
+    header h1 {
+      margin: 0 0 4px;
+      font-size: clamp(1.6rem, 3vw, 1.9rem);
+    }
+
+    header p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 720px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 8px 0 0;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(10,16,35,0.9);
+      border: 1px solid var(--accent-soft);
+      color: var(--text-muted);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      padding: 14px 14px 12px;
+      margin-bottom: 12px;
+    }
+
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+    }
+
+    .card h3 {
+      margin: 12px 0 4px;
+      font-size: 0.95rem;
+    }
+
+    .card p {
+      margin: 0 0 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .subtext {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .link-list {
+      list-style: none;
+      padding: 0;
+      margin: 6px 0 0;
+      font-size: 0.88rem;
+    }
+
+    .link-list li + li {
+      margin-top: 4px;
+    }
+
+    .link-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: baseline;
+    }
+
+    .ext {
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+
+    .label-pill {
+      font-size: 0.7rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      color: var(--text-muted);
+      background: rgba(20,26,52,0.9);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap: 8px;
+    }
+
+    @media (max-width: 700px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .note {
+      margin-top: 6px;
+      padding: 8px 9px;
+      border-radius: 10px;
+      background: var(--card-bg-soft);
+      border: 1px dashed var(--border-strong);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .danger-note {
+      border-color: var(--danger);
+      background: #2a0f16;
+      color: #ffd7da;
+    }
+
+    .list-tight {
+      margin: 4px 0 0;
+      padding-left: 18px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .meta-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .meta-list li + li {
+      margin-top: 4px;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin: 0 0 6px;
+    }
+
+    .highlight {
+      color: #3fe58a;
+      font-weight: 500;
+    }
+
+    /* 3D model container */
+    #ucs-3d-wrapper {
+      margin-top: 4px;
+      border-radius: 12px;
+      border: 1px solid var(--border-strong);
+      background: radial-gradient(circle at top, #202746 0, #060816 50%, #020309 100%);
+      padding: 8px;
+    }
+
+    #ucs-3d-canvas {
+      width: 100%;
+      height: 260px;
+      display: block;
+      border-radius: 8px;
+      background: #050712;
+    }
+
+    .ucs-legend {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 4px;
+    }
+
+    .ucs-legend span::before {
+      content: "■ ";
+    }
+
+    .legend-chassis::before { color: #8088ff; }
+    .legend-blade::before { color: #62e0ff; }
+    .legend-cseries::before { color: #ffb347; }
+    .legend-storage::before { color: #9bde6c; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Back to main wiki -->
+    <a href="../index.html" class="back-link">
+      <span>←</span> Back to Knowledge Hub
+    </a>
+
+    <!-- Header -->
+    <header>
+      <h1>Cisco UCS Documentation Hub</h1>
+      <p>
+        Central place to jump into official Cisco UCS documentation for fabric interconnects, chassis, blades
+        and UCS Manager. Use this as your launchpad into vendor docs and your own notes.
+      </p>
+      <div class="tag-row">
+        <span class="tag">Cisco UCS</span>
+        <span class="tag">Fabric Interconnects</span>
+        <span class="tag">Chassis & Blades</span>
+        <span class="tag">UCS Manager</span>
+      </div>
+    </header>
+
+    <section class="layout">
+      <!-- LEFT SIDE: 3D + main doc categories -->
+      <div>
+
+        <!-- 3D MODEL CARD -->
+        <div class="card">
+          <div class="section-title">Visual model</div>
+          <h2>Simplified UCS Domain (3D)</h2>
+          <p>
+            Abstract 3D view showing a 5108 chassis with blade slots, C-Series rack servers, and a storage array.
+            This is schematic, not a Cisco-official mechanical model.
+          </p>
+          <div id="ucs-3d-wrapper">
+            <canvas id="ucs-3d-canvas"></canvas>
+          </div>
+          <div class="ucs-legend">
+            <span class="legend-chassis">5108 blade chassis</span>
+            <span class="legend-blade">Blade servers (B-Series)</span>
+            <span class="legend-cseries">C-Series rack servers</span>
+            <span class="legend-storage">Storage array</span>
+          </div>
+          <div class="note">
+            The model will slowly rotate to give you a sense of the layout. Use this as a mental map when you’re
+            thinking through how traffic and faults flow through the domain.
+          </div>
+        </div>
+
+        <!-- CORE HARDWARE -->
+        <div class="card">
+          <div class="section-title">Core Hardware</div>
+          <h2>Fabric Interconnects</h2>
+          <p>
+            Entry points to Cisco’s official documentation for FI families. Use these when scoping platforms,
+            checking compatibility, and pulling configuration / troubleshooting guides.
+          </p>
+          <ul class="link-list">
+            <li>
+              <div class="link-line">
+                <a href="https://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-6400-series-fabric-interconnects/index.html" target="_blank" rel="noopener noreferrer">
+                  UCS 6400 Series Fabric Interconnects
+                </a>
+                <span class="label-pill">Current-gen</span>
+                <span class="ext">(Cisco)</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-line">
+                <a href="https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-6300-series-fabric-interconnects/tsd-products-support-series-home.html" target="_blank" rel="noopener noreferrer">
+                  UCS 6300 Series Fabric Interconnects
+                </a>
+                <span class="label-pill">Previous-gen</span>
+                <span class="ext">(Cisco Support)</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-line">
+                <a href="https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-6200-series-fabric-interconnects/tsd-products-support-series-home.html" target="_blank" rel="noopener noreferrer">
+                  UCS 6200 Series Fabric Interconnects
+                </a>
+                <span class="label-pill">Legacy</span>
+                <span class="ext">(Cisco Support)</span>
+              </div>
+            </li>
+          </ul>
+
+          <h3>UCS Chassis & Blades</h3>
+          <ul class="link-list">
+            <li>
+              <div class="link-line">
+                <a href="https://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-b-series-blade-servers/index.html" target="_blank" rel="noopener noreferrer">
+                  UCS B-Series Blade Servers
+                </a>
+                <span class="ext">(Product overview)</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-line">
+                <a href="https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-5108-blade-server-chassis/tsd-products-support-series-home.html" target="_blank" rel="noopener noreferrer">
+                  UCS 5108 Blade Server Chassis
+                </a>
+                <span class="ext">(Support & docs)</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="section-title">Management Layer</div>
+          <h2>UCS Manager (UCSM)</h2>
+          <p>
+            Official docs for UCS Manager software, including configuration guides, reference material, and release notes.
+          </p>
+          <ul class="link-list">
+            <li>
+              <div class="link-line">
+                <a href="https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-manager/tsd-products-support-series-home.html" target="_blank" rel="noopener noreferrer">
+                  UCS Manager – Support & Documentation
+                </a>
+                <span class="ext">(Cisco Support)</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-line">
+                <a href="https://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-manager-software/index.html" target="_blank" rel="noopener noreferrer">
+                  UCS Manager Software – Overview & Guides
+                </a>
+                <span class="ext">(Cisco)</span>
+              </div>
+            </li>
+          </ul>
+
+          <h3>Release Notes & Compatibility</h3>
+          <p class="subtext">
+            Always pull release notes and compatibility info before firmware changes or hardware swaps.
+          </p>
+          <ul class="list-tight">
+            <li>Check UCSM release notes for known issues and caveats.</li>
+            <li>Verify FI / IOM / blade firmware interoperability.</li>
+            <li>Confirm support matrix for OS, drivers, and hypervisors.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="section-title">Troubleshooting & TAC Material</div>
+          <h2>Technical References</h2>
+          <p>High-value reference docs you’ll lean on during TAC-style work and complex cases.</p>
+          <ul class="link-list">
+            <li>
+              <div class="link-line">
+                <a href="https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-manager/products-technical-reference-list.html" target="_blank" rel="noopener noreferrer">
+                  UCS Manager – Technical Reference List
+                </a>
+                <span class="ext">(Cisco)</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-line">
+                <a href="https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-b-series-blade-servers/products-technical-reference-list.html" target="_blank" rel="noopener noreferrer">
+                  UCS B-Series – Technical Reference List
+                </a>
+                <span class="ext">(Blade & hardware guides)</span>
+              </div>
+            </li>
+          </ul>
+          <div class="note">
+            <span class="highlight">Tip:</span> When you hit a fault or error code, search the exact text in these
+            reference lists and release notes before assuming it’s hardware.
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE: quick actions and your own notes hooks -->
+      <aside>
+        <div class="card">
+          <div class="section-title">Quick Tasks</div>
+          <h2>Common Workflows</h2>
+          <p class="subtext">
+            Use this as a mental checklist before you dive into a UCS issue or change.
+          </p>
+          <ul class="meta-list">
+            <li>• <span class="highlight">Scoping:</span> Identify FI model, chassis count, blades, UCSM version.</li>
+            <li>• <span class="highlight">Docs:</span> Open FI / UCSM docs from the left, match versions.</li>
+            <li>• <span class="highlight">Impact:</span> Check if issue is localized (one blade) or systemic (FI / fabric).</li>
+            <li>• <span class="highlight">Evidence:</span> Collect faults, event logs, and screenshots early.</li>
+          </ul>
+          <div class="note danger-note">
+            Never perform firmware upgrades or disruptive changes without:
+            <br />• Verified backups, and<br />• Matching official upgrade path documentation.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">My Notes (Local Wiki)</div>
+          <h2>Attach Your Own Content</h2>
+          <p class="subtext">
+            As you build out your wiki, link your own UCS notes and runbooks here.
+          </p>
+          <ul class="link-list">
+            <li>
+              <div class="link-line">
+                <a href="UCS-Overview.html">[Placeholder] UCS Overview Notes</a>
+                <span class="label-pill">Local</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-line">
+                <a href="UCS-Troubleshooting-Index.html">[Placeholder] Troubleshooting Index</a>
+                <span class="label-pill">Local</span>
+              </div>
+            </li>
+          </ul>
+          <div class="note">
+            You can create these pages later under <code>pages/</code> (e.g.
+            <code>pages/UCS-Overview.html</code>) and update the links above when you’re ready.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">Context</div>
+          <h2>How to Use This Page</h2>
+          <p class="subtext">
+            Treat this hub as the “front door” for anything Cisco UCS. When a case or lab task comes in:
+          </p>
+          <ul class="list-tight">
+            <li>Open the relevant FI / chassis / UCSM docs from here.</li>
+            <li>Check technical reference lists for the exact error or feature.</li>
+            <li>Jump into your own wiki pages (right side) for customized playbooks.</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <!-- Three.js for the 3D model -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script>
+    (function() {
+      const canvas = document.getElementById("ucs-3d-canvas");
+      if (!canvas || !window.THREE) return;
+
+      const scene = new THREE.Scene();
+      scene.background = null;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      const setSize = () => {
+        const rect = canvas.getBoundingClientRect();
+        const width = rect.width || 400;
+        const height = rect.height || 260;
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      };
+
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+      camera.position.set(8, 6, 10);
+      camera.lookAt(0, 0, 0);
+
+      // Lights
+      const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+      scene.add(ambient);
+      const keyLight = new THREE.DirectionalLight(0xffffff, 0.6);
+      keyLight.position.set(10, 10, 5);
+      scene.add(keyLight);
+      const rimLight = new THREE.DirectionalLight(0x7fb3ff, 0.5);
+      rimLight.position.set(-8, 4, -6);
+      scene.add(rimLight);
+
+      // Materials
+      const chassisMat = new THREE.MeshStandardMaterial({ color: 0x8088ff, metalness: 0.2, roughness: 0.3 });
+      const bladeMat = new THREE.MeshStandardMaterial({ color: 0x62e0ff, metalness: 0.2, roughness: 0.3 });
+      const cSeriesMat = new THREE.MeshStandardMaterial({ color: 0xffb347, metalness: 0.2, roughness: 0.35 });
+      const storageMat = new THREE.MeshStandardMaterial({ color: 0x9bde6c, metalness: 0.2, roughness: 0.35 });
+
+      // 5108 chassis (big box)
+      const chassisGeom = new THREE.BoxGeometry(6.5, 2.2, 3.5);
+      const chassis = new THREE.Mesh(chassisGeom, chassisMat);
+      chassis.position.set(-1.2, 0, 0);
+      scene.add(chassis);
+
+      // Blade slots (front face)
+      const bladeGeom = new THREE.BoxGeometry(0.6, 1.5, 0.2);
+      const bladeGroup = new THREE.Group();
+      const bladeCount = 8;
+      const startX = -4.2;
+      for (let i = 0; i < bladeCount; i++) {
+        const blade = new THREE.Mesh(bladeGeom, bladeMat);
+        blade.position.set(startX + i * 1.0, 0, 1.9);
+        bladeGroup.add(blade);
+      }
+      scene.add(bladeGroup);
+
+      // C-Series rack servers (stack on the right)
+      const cGeom = new THREE.BoxGeometry(3, 0.6, 2.8);
+      const cGroup = new THREE.Group();
+      for (let i = 0; i < 3; i++) {
+        const c = new THREE.Mesh(cGeom, cSeriesMat);
+        c.position.set(4.5, -1.0 + i * 0.9, -1.0);
+        cGroup.add(c);
+      }
+      scene.add(cGroup);
+
+      // Storage array (front-right block)
+      const storageGeom = new THREE.BoxGeometry(3, 1.6, 2.0);
+      const storage = new THREE.Mesh(storageGeom, storageMat);
+      storage.position.set(4.5, 0.5, 2.0);
+      scene.add(storage);
+
+      // Ground-ish plane hint
+      const planeGeom = new THREE.PlaneGeometry(18, 10);
+      const planeMat = new THREE.MeshStandardMaterial({ color: 0x050712, metalness: 0, roughness: 1 });
+      const plane = new THREE.Mesh(planeGeom, planeMat);
+      plane.rotation.x = -Math.PI / 2;
+      plane.position.y = -1.3;
+      plane.receiveShadow = true;
+      scene.add(plane);
+
+      // Resize handling
+      setSize();
+      window.addEventListener("resize", setSize);
+
+      // Simple auto-rotation
+      let lastTime = 0;
+      function animate(time) {
+        const dt = (time - lastTime) / 1000 || 0;
+        lastTime = time;
+
+        scene.rotation.y += dt * 0.25; // rotate slowly
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+</html>
