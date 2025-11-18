@@ -1,1 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cisco UCS Knowledge Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card-bg: #151b30;
+      --accent: #2f7de1;
+      --accent-soft: #223a63;
+      --text-main: #f5f7ff;
+      --text-muted: #b5bedc;
+      --border-subtle: #262c45;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #192446 0, #050712 55%, #000000 100%);
+      color: var(--text-main);
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      padding: 16px 0 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .brand-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .brand-title strong {
+      color: var(--accent);
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-main {
+      background: linear-gradient(135deg, var(--card-bg), #12172a);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 20px 20px 18px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-main h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 3vw, 2.2rem);
+    }
+
+    .hero-main p {
+      margin: 0 0 14px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(47, 125, 225, 0.12);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #3fe58a;
+      box-shadow: 0 0 6px #3fe58a;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      margin-bottom: 4px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 10px 25px rgba(10, 92, 201, 0.5);
+    }
+
+    .btn-primary:hover {
+      background: #2a68b5;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--accent-soft);
+      color: var(--text-muted);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      background: rgba(27, 54, 99, 0.6);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .hero-meta span {
+      opacity: 0.9;
+    }
+
+    .hero-aside {
+      background: radial-gradient(circle at top, #20335c 0, #111629 50%, #090b18 100%);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      padding: 16px 16px 14px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 35px rgba(0,0,0,0.65);
+    }
+
+    .hero-aside h2 {
+      font-size: 1rem;
+      margin: 0 0 4px;
+    }
+
+    .hero-aside p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0 0 10px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(10, 16, 35, 0.8);
+      border: 1px solid rgba(80, 116, 191, 0.7);
+      color: var(--text-muted);
+    }
+
+    .metric-box {
+      margin-top: 8px;
+      padding: 8px;
+      border-radius: 10px;
+      background: rgba(5,8,20,0.9);
+      border: 1px solid rgba(46, 112, 211, 0.8);
+      font-size: 0.78rem;
+    }
+
+    .metric-box strong {
+      color: #3fe58a;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      padding: 16px 16px 14px;
+      margin-bottom: 14px;
+    }
+
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .link-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .link-list li + li {
+      margin-top: 6px;
+    }
+
+    .link-item {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: baseline;
+      font-size: 0.9rem;
+    }
+
+    .link-item a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .link-item a:hover {
+      text-decoration: underline;
+    }
+
+    .link-tag {
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(21, 27, 48, 0.9);
+      color: var(--text-muted);
+      border: 1px solid var(--accent-soft);
+    }
+
+    .mini-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .mini-list li + li {
+      margin-top: 4px;
+    }
+
+    footer {
+      margin-top: 26px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <div class="brand-title"><strong>UCS</strong> • Knowledge Hub</div>
+        <div class="tagline">Deep-dive notes, runbooks, and TAC-level troubleshooting for Cisco UCS.</div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-main">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Building toward UCS TAC-level mastery</span>
+        </div>
+        <h1>Cisco UCS Wiki & Runbook</h1>
+        <p>
+          Centralized notes for chassis, fabric interconnects, blades, policies, and real-world troubleshooting.
+          Designed to grow as you lab, break, and fix Cisco UCS.
+        </p>
+
+        <div class="hero-cta">
+          <a href="pages/ucs-overview.html" class="btn btn-primary">Start with UCS Overview</a>
+          <a href="pages/troubleshooting-index.html" class="btn btn-ghost">Jump to Troubleshooting</a>
+        </div>
+
+        <div class="hero-meta">
+          <span>• Focus: UCS classic (5108, FI 62xx/63xx/64xx), profiles, and policies</span>
+          <span>• Scope: Concepts, lab builds, TAC-style workflows, error decoding</span>
+        </div>
+      </div>
+
+      <aside class="hero-aside">
+        <h2>At-a-glance areas</h2>
+        <p>Use this wiki as your personal TAC playbook for UCS cases.</p>
+        <div class="chip-row">
+          <span class="chip">Chassis & FIs</span>
+          <span class="chip">Service Profiles</span>
+          <span class="chip">Boot & Firmware</span>
+          <span class="chip">Logs & Debug</span>
+        </div>
+        <div class="metric-box">
+          <strong>Suggested reading path:</strong><br/>
+          1) Overview → 2) Hardware & Topology → 3) Policies/Profiles → 4) Common Faults & Logs
+        </div>
+      </aside>
+    </section>
+
+    <section class="main-grid">
+      <div>
+        <div class="card">
+          <h2>Core Concepts (Start Here)</h2>
+          <p>Foundation topics to make sense of the whole UCS stack before you dive into errors.</p>
+          <ul class="link-list">
+            <li class="link-item">
+              <a href="pages/ucs-overview.html">What is Cisco UCS?</a>
+              <span class="link-tag">Level 1</span>
+            </li>
+            <li class="link-item">
+              <a href="pages/ucs-hardware-stack.html">Chassis, FIs & Servers</a>
+              <span class="link-tag">Level 1–2</span>
+            </li>
+            <li class="link-item">
+              <a href="pages/ucs-logical-model.html">Logical Model: Pools, Policies & Profiles</a>
+              <span class="link-tag">Level 2</span>
+            </li>
+            <li class="link-item">
+              <a href="pages/ucs-boot-firmware.html">Boot Policies & Firmware Strategy</a>
+              <span class="link-tag">Level 2</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Troubleshooting & TAC Workflows</h2>
+          <p>Structured approaches you can reuse when a case lands on your queue.</p>
+          <ul class="link-list">
+            <li class="link-item">
+              <a href="pages/troubleshooting-index.html">Troubleshooting Index & Flow</a>
+              <span class="link-tag">Entry</span>
+            </li>
+            <li class="link-item">
+              <a href="pages/troubleshooting-boot.html">Boot & Power-On Issues</a>
+              <span class="link-tag">Common</span>
+            </li>
+            <li class="link-item">
+              <a href="pages/troubleshooting-fabric.html">Fabric & Connectivity Problems</a>
+              <span class="link-tag">Intermediate</span>
+            </li>
+            <li class="link-item">
+              <a href="pages/troubleshooting-hardware.html">Hardware Faults & FRU Swaps</a>
+              <span class="link-tag">Field</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <h2>Lab Builds & Reference Configs</h2>
+          <p>Known-good configs and lab patterns you can reuse or break safely.</p>
+          <ul class="mini-list">
+            <li>• <a href="pages/lab-topology.html">Basic Lab Topology (Single Chassis)</a></li>
+            <li>• <a href="pages/lab-service-profile.html">Service Profile Walk-through</a></li>
+            <li>• <a href="pages/lab-firmware-upgrade.html">Firmware Upgrade Dry Run</a></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Reference & Glossary</h2>
+          <p>UCS vocabulary and quick-look references.</p>
+          <ul class="mini-list">
+            <li>• <a href="pages/ucs-glossary.html">UCS Terminology & Acronyms</a></li>
+            <li>• <a href="pages/ucs-cli-cheatsheet.html">CLI & UCSM Cheat Sheet</a></li>
+            <li>• <a href="pages/error-codes.html">Common Error Codes & Meanings</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Cisco UCS Knowledge Hub – personal study & runbook wiki. Not affiliated with Cisco Systems.
+    </footer>
+  </div>
+</body>
+</html>
 
