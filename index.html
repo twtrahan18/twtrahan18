@@ -50,3 +50,363 @@
       font-weight: 600;
       letter-spacing: 0.03em;
     }
+
+    .site-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .hero {
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      margin: 6px 0 0;
+      max-width: 720px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .search-card {
+      margin-top: 18px;
+      padding: 14px 14px 10px;
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .search-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .search-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-row input[type="search"] {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: #050818;
+      color: var(--text-main);
+      font-size: 0.95rem;
+    }
+
+    .search-row input[type="search"]::placeholder {
+      color: #737da4;
+    }
+
+    .search-row button {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: var(--accent);
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .search-row button:hover {
+      background: #285fa5;
+    }
+
+    .search-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .topic-card {
+      background: var(--card-bg-soft);
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      padding: 12px 12px 10px;
+      transition: border-color 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease, background 0.15s ease;
+      cursor: pointer;
+    }
+
+    .topic-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      background: #171d35;
+      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.6);
+    }
+
+    .topic-card h2 {
+      margin: 0 0 3px;
+      font-size: 1rem;
+    }
+
+    .topic-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .topic-card a {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 0.82rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .topic-card a:hover {
+      text-decoration: underline;
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .results-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      padding: 12px 12px 10px;
+      max-height: 360px;
+      overflow: auto;
+    }
+
+    .results-title {
+      font-size: 0.95rem;
+      margin: 0 0 4px;
+    }
+
+    .results-list {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+      font-size: 0.86rem;
+    }
+
+    .results-list li + li {
+      margin-top: 8px;
+      padding-top: 7px;
+      border-top: 1px solid #1f2337;
+    }
+
+    .results-list a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .results-list a:hover {
+      text-decoration: underline;
+    }
+
+    .result-desc {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    .no-results {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    footer {
+      margin-top: 28px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <div class="site-title">My Knowledge Hub</div>
+        <div class="site-subtitle">Central wiki for tech, UCS, notes, and future topics.</div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>Welcome</h1>
+      <p>
+        This site collects notes, references, and links across different areas. Use the search to jump straight
+        to a page, or browse by topic below.
+      </p>
+
+      <div class="search-card">
+        <div class="search-label">Search across pages</div>
+        <div class="search-row">
+          <input id="searchInput" type="search" placeholder="Search (e.g. &quot;Cisco UCS&quot;, &quot;troubleshooting&quot;, &quot;example&quot;)" />
+          <button type="button" id="searchButton">Search</button>
+        </div>
+        <div class="search-hint">
+          This is a client-side search. As you add new pages, update the search index in this file to include them.
+        </div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <div>
+        <div class="section-title">Topics</div>
+        <div class="topic-grid" id="topicGrid">
+
+          <!-- FIXED LINK HERE -->
+          <div class="topic-card" data-keywords="cisco ucs documentation servers blades fi fabric interconnect">
+            <h2>Cisco UCS Documentation Hub</h2>
+            <p>Entry point for official Cisco UCS docs: fabric interconnects, chassis, blades, UCSM.</p>
+            <a href="pages/Cisco-UCS.html">Open UCS docs hub →</a>
+          </div>
+
+          <div class="topic-card" data-keywords="example placeholder wiki">
+            <h2>Example Page</h2>
+            <p>Sample page to verify navigation and structure is working.</p>
+            <a href="pages/example.html">Open example page →</a>
+          </div>
+
+        </div>
+      </div>
+
+      <aside>
+        <div class="section-title">Search results</div>
+        <div class="results-card">
+          <div class="results-title">Results</div>
+          <ul class="results-list" id="resultsList">
+
+            <!-- FIXED LINKS HERE -->
+            <li>
+              <a href="pages/Cisco-UCS.html">Cisco UCS Documentation Hub</a>
+              <div class="result-desc">Landing page that organizes links to official Cisco UCS documentation.</div>
+            </li>
+            <li>
+              <a href="pages/example.html">Example Page</a>
+              <div class="result-desc">Placeholder content page for testing navigation and layout.</div>
+            </li>
+
+          </ul>
+          <div class="no-results" id="noResults" style="display: none;">
+            No matches found. Try a different keyword.
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      Static wiki hosted on GitHub Pages. All search is performed in the browser (no backend).
+    </footer>
+  </div>
+
+  <script>
+    // SEARCH INDEX UPDATED HERE
+    const SEARCH_INDEX = [
+      {
+        title: "Cisco UCS Documentation Hub",
+        path: "pages/Cisco-UCS.html",
+        description: "Landing page that organizes links to official Cisco UCS documentation.",
+        keywords: "cisco ucs documentation fabric interconnect fi chassis blades ucsm troubleshooting"
+      },
+      {
+        title: "Example Page",
+        path: "pages/example.html",
+        description: "Sample page to verify navigation and structure is working.",
+        keywords: "example placeholder wiki test"
+      }
+    ];
+
+    const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton");
+    const resultsList = document.getElementById("resultsList");
+    const noResults = document.getElementById("noResults");
+    const topicGrid = document.getElementById("topicGrid");
+
+    function runSearch() {
+      const q = (searchInput.value || "").trim().toLowerCase();
+      const results = [];
+      const cards = topicGrid.querySelectorAll(".topic-card");
+
+      // Filter topic cards visually
+      cards.forEach(card => {
+        const keywords = (card.getAttribute("data-keywords") || "").toLowerCase();
+        if (!q || keywords.includes(q)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      // Filter search index
+      if (!q) {
+        SEARCH_INDEX.forEach(item => results.push(item));
+      } else {
+        SEARCH_INDEX.forEach(item => {
+          const haystack = (item.title + " " + item.description + " " + item.keywords).toLowerCase();
+          if (haystack.includes(q)) {
+            results.push(item);
+          }
+        });
+      }
+
+      // Render result list
+      resultsList.innerHTML = "";
+      if (results.length === 0) {
+        noResults.style.display = "block";
+        return;
+      }
+
+      noResults.style.display = "none";
+
+      results.forEach(item => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = item.path;
+        a.textContent = item.title;
+
+        const desc = document.createElement("div");
+        desc.className = "result-desc";
+        desc.textContent = item.description;
+
+        li.appendChild(a); 
+        li.appendChild(desc); 
+        resultsList.appendChild(li);
+      });
+    }
+
+    searchButton.addEventListener("click", runSearch);
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        runSearch();
+      }
+    });
+
+    runSearch();
+  </script>
+</body>
+</html>
