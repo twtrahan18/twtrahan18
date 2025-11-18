@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Cisco UCS Documentation Hub – My Knowledge Hub</title>
+  <title>Cisco UCS Support Hub – My Knowledge Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
       --bg: #050712;
       --card-bg: #0f1424;
-      --card-bg-soft: #141a30;
+      --card-bg-soft: #151b30;
       --accent: #2f7de1;
       --accent-soft: #223a63;
+      --accent-strong: #4f96ff;
       --text-main: #f5f7ff;
       --text-muted: #b5bedc;
       --border-subtle: #262c45;
       --border-strong: #3b4670;
-      --danger: #ff5a5f;
     }
 
     * {
@@ -31,19 +31,18 @@
       line-height: 1.6;
     }
 
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 16px 40px;
-    }
-
     a {
       color: var(--accent);
       text-decoration: none;
     }
-
     a:hover {
       text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
     }
 
     .back-link {
@@ -52,58 +51,139 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
-
     .back-link span {
       font-size: 1rem;
     }
 
     header {
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 18px;
+      padding: 18px 18px 16px;
+      border-radius: 16px;
+      background: linear-gradient(120deg, #151c36, #121932 45%, #081020 100%);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+      margin-bottom: 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.6fr);
+      gap: 18px;
     }
 
-    header h1 {
-      margin: 0 0 4px;
-      font-size: clamp(1.6rem, 3vw, 1.9rem);
+    @media (max-width: 900px) {
+      header {
+        grid-template-columns: 1fr;
+      }
     }
 
-    header p {
+    .hero-main h1 {
+      margin: 0 0 6px;
+      font-size: clamp(1.8rem, 3vw, 2.2rem);
+    }
+    .hero-main p {
       margin: 0;
-      font-size: 0.9rem;
+      font-size: 0.96rem;
       color: var(--text-muted);
-      max-width: 720px;
+      max-width: 620px;
     }
 
-    .tag-row {
+    .hero-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin: 8px 0 0;
+      margin-top: 10px;
     }
-
-    .tag {
+    .hero-tag {
       font-size: 0.75rem;
       padding: 2px 8px;
       border-radius: 999px;
-      background: rgba(10,16,35,0.9);
       border: 1px solid var(--accent-soft);
       color: var(--text-muted);
+      background: rgba(5, 12, 30, 0.9);
+    }
+
+    .hero-actions {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent-strong);
+      color: #ffffff;
+      box-shadow: 0 10px 26px rgba(10, 92, 201, 0.65);
+    }
+    .btn-primary:hover {
+      background: #2a68b5;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--accent-soft);
+      color: var(--text-muted);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent-strong);
+      background: rgba(21, 30, 60, 0.9);
+    }
+
+    .hero-side {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: radial-gradient(circle at top, #24335e 0, #121a34 45%, #030510 100%);
+      border: 1px solid var(--border-strong);
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+    .hero-side h2 {
+      margin: 0 0 6px;
+      font-size: 0.98rem;
+    }
+    .hero-side p {
+      margin: 0 0 8px;
+    }
+    .hero-side ul {
+      margin: 4px 0 0;
+      padding-left: 16px;
+      font-size: 0.82rem;
     }
 
     .layout {
+      margin-top: 18px;
       display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.7fr);
       gap: 18px;
-      margin-top: 14px;
     }
 
     @media (max-width: 900px) {
       .layout {
         grid-template-columns: 1fr;
       }
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin: 0 0 6px;
     }
 
     .card {
@@ -115,13 +195,8 @@
     }
 
     .card h2 {
-      margin: 0 0 6px;
-      font-size: 1.05rem;
-    }
-
-    .card h3 {
-      margin: 12px 0 4px;
-      font-size: 0.95rem;
+      margin: 0 0 4px;
+      font-size: 1.02rem;
     }
 
     .card p {
@@ -130,34 +205,53 @@
       color: var(--text-muted);
     }
 
-    .subtext {
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .tile {
+      background: var(--card-bg-soft);
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      padding: 10px 10px 9px;
+      font-size: 0.88rem;
+      transition: border-color 0.15s ease, background 0.15s ease, transform 0.05s ease;
+    }
+    .tile:hover {
+      border-color: var(--accent-strong);
+      background: #1a213a;
+      transform: translateY(-1px);
+    }
+    .tile-title {
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .tile-desc {
       font-size: 0.82rem;
       color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .tile-link {
+      font-size: 0.8rem;
     }
 
     .link-list {
       list-style: none;
       padding: 0;
-      margin: 6px 0 0;
-      font-size: 0.88rem;
+      margin: 8px 0 0;
+      font-size: 0.86rem;
     }
-
     .link-list li + li {
-      margin-top: 4px;
+      margin-top: 6px;
     }
-
     .link-line {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
       align-items: baseline;
     }
-
-    .ext {
-      font-size: 0.75rem;
-      opacity: 0.8;
-    }
-
     .label-pill {
       font-size: 0.7rem;
       padding: 1px 6px;
@@ -166,17 +260,20 @@
       color: var(--text-muted);
       background: rgba(20,26,52,0.9);
     }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-      gap: 8px;
+    .ext {
+      font-size: 0.75rem;
+      opacity: 0.8;
     }
 
-    @media (max-width: 700px) {
-      .two-col {
-        grid-template-columns: 1fr;
-      }
+    .meta-list {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0 0;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+    .meta-list li + li {
+      margin-top: 4px;
     }
 
     .note {
@@ -189,137 +286,136 @@
       color: var(--text-muted);
     }
 
-    .danger-note {
-      border-color: var(--danger);
-      background: #2a0f16;
-      color: #ffd7da;
-    }
-
-    .list-tight {
-      margin: 4px 0 0;
-      padding-left: 18px;
-      font-size: 0.85rem;
+    footer {
+      margin-top: 26px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
       color: var(--text-muted);
+      text-align: center;
     }
 
-    .meta-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 0.85rem;
-      color: var(--text-muted);
+    .search-bar {
+      margin-top: 8px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
-
-    .meta-list li + li {
-      margin-top: 4px;
-    }
-
-    .section-title {
+    .search-bar input {
+      flex: 1;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: #050818;
+      color: var(--text-main);
       font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+    }
+    .search-bar input::placeholder {
+      color: #737da4;
+    }
+    .search-bar button {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.86rem;
+      cursor: pointer;
+    }
+    .search-bar button:hover {
+      background: #295fa5;
+    }
+    .search-hint {
+      font-size: 0.78rem;
       color: var(--text-muted);
-      margin: 0 0 6px;
-    }
-
-    .highlight {
-      color: #3fe58a;
-      font-weight: 500;
-    }
-
-    /* 3D model container */
-    #ucs-3d-wrapper {
       margin-top: 4px;
-      border-radius: 12px;
-      border: 1px solid var(--border-strong);
-      background: radial-gradient(circle at top, #202746 0, #060816 50%, #020309 100%);
-      padding: 8px;
     }
-
-    #ucs-3d-canvas {
-      width: 100%;
-      height: 260px;
-      display: block;
-      border-radius: 8px;
-      background: #050712;
-    }
-
-    .ucs-legend {
-      margin-top: 6px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 4px;
-    }
-
-    .ucs-legend span::before {
-      content: "■ ";
-    }
-
-    .legend-chassis::before { color: #8088ff; }
-    .legend-blade::before { color: #62e0ff; }
-    .legend-cseries::before { color: #ffb347; }
-    .legend-storage::before { color: #9bde6c; }
   </style>
 </head>
 <body>
   <div class="page">
-
-    <!-- Back to main wiki -->
     <a href="../index.html" class="back-link">
       <span>←</span> Back to Knowledge Hub
     </a>
 
-    <!-- Header -->
+    <!-- HERO (modeled after a support portal) -->
     <header>
-      <h1>Cisco UCS Documentation Hub</h1>
-      <p>
-        Central place to jump into official Cisco UCS documentation for fabric interconnects, chassis, blades
-        and UCS Manager. Use this as your launchpad into vendor docs and your own notes.
-      </p>
-      <div class="tag-row">
-        <span class="tag">Cisco UCS</span>
-        <span class="tag">Fabric Interconnects</span>
-        <span class="tag">Chassis & Blades</span>
-        <span class="tag">UCS Manager</span>
+      <div class="hero-main">
+        <h1>Cisco UCS Support Hub</h1>
+        <p>
+          Central launcher for Cisco UCS docs, references, and your own notes. Use this page when you’re working
+          a UCS case, planning a change, or reviewing the platform.
+        </p>
+        <div class="hero-tags">
+          <span class="hero-tag">Fabric Interconnects</span>
+          <span class="hero-tag">5108 Chassis & Blades</span>
+          <span class="hero-tag">C-Series</span>
+          <span class="hero-tag">UCS Manager</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://www.cisco.com/site/us/en/support/index.html" target="_blank" rel="noopener noreferrer">
+            Go to Cisco Support
+          </a>
+          <a class="btn btn-ghost" href="#hardware-docs">
+            Jump to UCS docs
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <h2>Quick search</h2>
+        <p>Search Cisco’s public docs and your own notes (by keyword):</p>
+        <div class="search-bar">
+          <input id="ucsSearch" type="search" placeholder="Search e.g. &quot;5108 chassis fault&quot;" />
+          <button type="button" id="ucsSearchBtn">Search</button>
+        </div>
+        <div class="search-hint">
+          • Press Enter or click Search to query Cisco’s support site in a new tab.  
+          • Use your browser’s search inside your own notes pages.
+        </div>
       </div>
     </header>
 
     <section class="layout">
-      <!-- LEFT SIDE: 3D + main doc categories -->
+      <!-- LEFT COLUMN: main tiles + docs -->
       <div>
-
-        <!-- 3D MODEL CARD -->
-        <div class="card">
-          <div class="section-title">Visual model</div>
-          <h2>Simplified UCS Domain (3D)</h2>
-          <p>
-            Abstract 3D view showing a 5108 chassis with blade slots, C-Series rack servers, and a storage array.
-            This is schematic, not a Cisco-official mechanical model.
-          </p>
-          <div id="ucs-3d-wrapper">
-            <canvas id="ucs-3d-canvas"></canvas>
+        <div class="section-title">Support tools & entry points</div>
+        <div class="card-grid">
+          <div class="tile">
+            <div class="tile-title">Documentation</div>
+            <div class="tile-desc">Core UCS hardware and UCS Manager documentation on Cisco.com.</div>
+            <div class="tile-link">
+              <a href="#hardware-docs">View UCS docs →</a>
+            </div>
           </div>
-          <div class="ucs-legend">
-            <span class="legend-chassis">5108 blade chassis</span>
-            <span class="legend-blade">Blade servers (B-Series)</span>
-            <span class="legend-cseries">C-Series rack servers</span>
-            <span class="legend-storage">Storage array</span>
+          <div class="tile">
+            <div class="tile-title">Troubleshooting</div>
+            <div class="tile-desc">Jump to technical reference lists and high–value guides.</div>
+            <div class="tile-link">
+              <a href="#troubleshooting">View references →</a>
+            </div>
           </div>
-          <div class="note">
-            The model will slowly rotate to give you a sense of the layout. Use this as a mental map when you’re
-            thinking through how traffic and faults flow through the domain.
+          <div class="tile">
+            <div class="tile-title">Lab & Upgrade Planning</div>
+            <div class="tile-desc">Use Cisco docs when labbing builds or planning firmware changes.</div>
+            <div class="tile-link">
+              <a href="#ucsm">Go to UCSM docs →</a>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-title">My UCS Notes</div>
+            <div class="tile-desc">Link your personal runbooks and case notes here.</div>
+            <div class="tile-link">
+              <a href="#my-notes">Open my wiki →</a>
+            </div>
           </div>
         </div>
 
-        <!-- CORE HARDWARE -->
-        <div class="card">
-          <div class="section-title">Core Hardware</div>
+        <div id="hardware-docs" class="card" style="margin-top: 14px;">
+          <div class="section-title">Hardware documentation</div>
           <h2>Fabric Interconnects</h2>
           <p>
-            Entry points to Cisco’s official documentation for FI families. Use these when scoping platforms,
-            checking compatibility, and pulling configuration / troubleshooting guides.
+            Use these when you need platform details, cabling, limitations, or FI-specific fault information.
           </p>
           <ul class="link-list">
             <li>
@@ -336,7 +432,7 @@
                 <a href="https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-6300-series-fabric-interconnects/tsd-products-support-series-home.html" target="_blank" rel="noopener noreferrer">
                   UCS 6300 Series Fabric Interconnects
                 </a>
-                <span class="label-pill">Previous-gen</span>
+                <span class="label-pill">Previous gen</span>
                 <span class="ext">(Cisco Support)</span>
               </div>
             </li>
@@ -351,16 +447,11 @@
             </li>
           </ul>
 
-          <h3>UCS Chassis & Blades</h3>
+          <h2 style="margin-top: 14px;">5108 chassis, blades & C-Series</h2>
+          <p>
+            Use these for FRUs, slot mapping, and server-level faults.
+          </p>
           <ul class="link-list">
-            <li>
-              <div class="link-line">
-                <a href="https://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-b-series-blade-servers/index.html" target="_blank" rel="noopener noreferrer">
-                  UCS B-Series Blade Servers
-                </a>
-                <span class="ext">(Product overview)</span>
-              </div>
-            </li>
             <li>
               <div class="link-line">
                 <a href="https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-5108-blade-server-chassis/tsd-products-support-series-home.html" target="_blank" rel="noopener noreferrer">
@@ -369,14 +460,31 @@
                 <span class="ext">(Support & docs)</span>
               </div>
             </li>
+            <li>
+              <div class="link-line">
+                <a href="https://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-b-series-blade-servers/index.html" target="_blank" rel="noopener noreferrer">
+                  UCS B-Series Blade Servers
+                </a>
+                <span class="ext">(Product family)</span>
+              </div>
+            </li>
+            <li>
+              <div class="link-line">
+                <a href="https://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-c-series-rack-servers/index.html" target="_blank" rel="noopener noreferrer">
+                  UCS C-Series Rack Servers
+                </a>
+                <span class="ext">(Product family)</span>
+              </div>
+            </li>
           </ul>
         </div>
 
-        <div class="card">
-          <div class="section-title">Management Layer</div>
+        <div id="ucsm" class="card">
+          <div class="section-title">Management & firmware</div>
           <h2>UCS Manager (UCSM)</h2>
           <p>
-            Official docs for UCS Manager software, including configuration guides, reference material, and release notes.
+            Config guides, release notes, and support pages for UCS Manager. Always confirm versions here before
+            changing firmware or major policies.
           </p>
           <ul class="link-list">
             <li>
@@ -396,29 +504,29 @@
               </div>
             </li>
           </ul>
-
-          <h3>Release Notes & Compatibility</h3>
-          <p class="subtext">
-            Always pull release notes and compatibility info before firmware changes or hardware swaps.
-          </p>
-          <ul class="list-tight">
-            <li>Check UCSM release notes for known issues and caveats.</li>
-            <li>Verify FI / IOM / blade firmware interoperability.</li>
-            <li>Confirm support matrix for OS, drivers, and hypervisors.</li>
-          </ul>
+          <div class="note">
+            Before upgrades: pull the correct UCSM release notes, confirm supported paths, and check compatibility
+            for FIs, IOMs, blades, and any C-Series attached.
+          </div>
         </div>
+      </div>
 
-        <div class="card">
-          <div class="section-title">Troubleshooting & TAC Material</div>
-          <h2>Technical References</h2>
-          <p>High-value reference docs you’ll lean on during TAC-style work and complex cases.</p>
+      <!-- RIGHT COLUMN: troubleshooting, portals, your notes -->
+      <aside>
+        <div id="troubleshooting" class="card">
+          <div class="section-title">Troubleshooting</div>
+          <h2>Technical reference lists</h2>
+          <p>
+            When you hit a specific error, fault code, or behavior, these references are usually the next click
+            after the GUI.
+          </p>
           <ul class="link-list">
             <li>
               <div class="link-line">
                 <a href="https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-manager/products-technical-reference-list.html" target="_blank" rel="noopener noreferrer">
                   UCS Manager – Technical Reference List
                 </a>
-                <span class="ext">(Cisco)</span>
+                <span class="ext">(Config & feature docs)</span>
               </div>
             </li>
             <li>
@@ -426,42 +534,35 @@
                 <a href="https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-b-series-blade-servers/products-technical-reference-list.html" target="_blank" rel="noopener noreferrer">
                   UCS B-Series – Technical Reference List
                 </a>
-                <span class="ext">(Blade & hardware guides)</span>
+                <span class="ext">(Blade & hardware docs)</span>
               </div>
             </li>
           </ul>
-          <div class="note">
-            <span class="highlight">Tip:</span> When you hit a fault or error code, search the exact text in these
-            reference lists and release notes before assuming it’s hardware.
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT SIDE: quick actions and your own notes hooks -->
-      <aside>
-        <div class="card">
-          <div class="section-title">Quick Tasks</div>
-          <h2>Common Workflows</h2>
-          <p class="subtext">
-            Use this as a mental checklist before you dive into a UCS issue or change.
-          </p>
           <ul class="meta-list">
-            <li>• <span class="highlight">Scoping:</span> Identify FI model, chassis count, blades, UCSM version.</li>
-            <li>• <span class="highlight">Docs:</span> Open FI / UCSM docs from the left, match versions.</li>
-            <li>• <span class="highlight">Impact:</span> Check if issue is localized (one blade) or systemic (FI / fabric).</li>
-            <li>• <span class="highlight">Evidence:</span> Collect faults, event logs, and screenshots early.</li>
+            <li>• Search the exact fault text inside these references.</li>
+            <li>• Cross-check against release notes before assuming hardware failure.</li>
           </ul>
-          <div class="note danger-note">
-            Never perform firmware upgrades or disruptive changes without:
-            <br />• Verified backups, and<br />• Matching official upgrade path documentation.
-          </div>
         </div>
 
         <div class="card">
-          <div class="section-title">My Notes (Local Wiki)</div>
-          <h2>Attach Your Own Content</h2>
+          <div class="section-title">Cisco portals</div>
+          <h2>Useful external tools</h2>
+          <ul class="meta-list">
+            <li>• <a href="https://bst.cloudapps.cisco.com/bugsearch/" target="_blank" rel="noopener noreferrer">Cisco Bug Search Tool</a></li>
+            <li>• <a href="https://software.cisco.com/download/home" target="_blank" rel="noopener noreferrer">Software Downloads</a></li>
+            <li>• <a href="https://www.cisco.com/c/en/us/support/servers-unified-computing/index.html" target="_blank" rel="noopener noreferrer">UCS Support Landing</a></li>
+          </ul>
+          <div class="note">
+            Use these when you suspect known defects, need firmware images, or want more platform-wide context.
+          </div>
+        </div>
+
+        <div id="my-notes" class="card">
+          <div class="section-title">My UCS wiki</div>
+          <h2>Attach your own runbooks</h2>
           <p class="subtext">
-            As you build out your wiki, link your own UCS notes and runbooks here.
+            As you build out your local wiki, wire in your own HTML pages here so this hub links directly into
+            your content.
           </p>
           <ul class="link-list">
             <li>
@@ -478,127 +579,38 @@
             </li>
           </ul>
           <div class="note">
-            You can create these pages later under <code>pages/</code> (e.g.
-            <code>pages/UCS-Overview.html</code>) and update the links above when you’re ready.
+            When you’re ready, create these files under <code>pages/</code> (for example
+            <code>pages/UCS-Overview.html</code>) and update these links to include <code>pages/</code> in the path.
           </div>
-        </div>
-
-        <div class="card">
-          <div class="section-title">Context</div>
-          <h2>How to Use This Page</h2>
-          <p class="subtext">
-            Treat this hub as the “front door” for anything Cisco UCS. When a case or lab task comes in:
-          </p>
-          <ul class="list-tight">
-            <li>Open the relevant FI / chassis / UCSM docs from here.</li>
-            <li>Check technical reference lists for the exact error or feature.</li>
-            <li>Jump into your own wiki pages (right side) for customized playbooks.</li>
-          </ul>
         </div>
       </aside>
     </section>
+
+    <footer>
+      Cisco UCS Support Hub – personal reference and link launcher. Not affiliated with or endorsed by Cisco Systems.
+    </footer>
   </div>
 
-  <!-- Three.js for the 3D model -->
-  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
   <script>
-    (function() {
-      const canvas = document.getElementById("ucs-3d-canvas");
-      if (!canvas || !window.THREE) return;
+    // Simple helper: send search to Cisco Support site in a new tab
+    const ucsSearchInput = document.getElementById("ucsSearch");
+    const ucsSearchBtn = document.getElementById("ucsSearchBtn");
 
-      const scene = new THREE.Scene();
-      scene.background = null;
+    function runUcsSearch() {
+      const q = (ucsSearchInput.value || "").trim();
+      if (!q) return;
+      const url =
+        "https://www.cisco.com/site/us/en/support/index.html#search=" +
+        encodeURIComponent(q);
+      window.open(url, "_blank", "noopener");
+    }
 
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-      const setSize = () => {
-        const rect = canvas.getBoundingClientRect();
-        const width = rect.width || 400;
-        const height = rect.height || 260;
-        renderer.setSize(width, height, false);
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
-      };
-
-      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
-      camera.position.set(8, 6, 10);
-      camera.lookAt(0, 0, 0);
-
-      // Lights
-      const ambient = new THREE.AmbientLight(0xffffff, 0.6);
-      scene.add(ambient);
-      const keyLight = new THREE.DirectionalLight(0xffffff, 0.6);
-      keyLight.position.set(10, 10, 5);
-      scene.add(keyLight);
-      const rimLight = new THREE.DirectionalLight(0x7fb3ff, 0.5);
-      rimLight.position.set(-8, 4, -6);
-      scene.add(rimLight);
-
-      // Materials
-      const chassisMat = new THREE.MeshStandardMaterial({ color: 0x8088ff, metalness: 0.2, roughness: 0.3 });
-      const bladeMat = new THREE.MeshStandardMaterial({ color: 0x62e0ff, metalness: 0.2, roughness: 0.3 });
-      const cSeriesMat = new THREE.MeshStandardMaterial({ color: 0xffb347, metalness: 0.2, roughness: 0.35 });
-      const storageMat = new THREE.MeshStandardMaterial({ color: 0x9bde6c, metalness: 0.2, roughness: 0.35 });
-
-      // 5108 chassis (big box)
-      const chassisGeom = new THREE.BoxGeometry(6.5, 2.2, 3.5);
-      const chassis = new THREE.Mesh(chassisGeom, chassisMat);
-      chassis.position.set(-1.2, 0, 0);
-      scene.add(chassis);
-
-      // Blade slots (front face)
-      const bladeGeom = new THREE.BoxGeometry(0.6, 1.5, 0.2);
-      const bladeGroup = new THREE.Group();
-      const bladeCount = 8;
-      const startX = -4.2;
-      for (let i = 0; i < bladeCount; i++) {
-        const blade = new THREE.Mesh(bladeGeom, bladeMat);
-        blade.position.set(startX + i * 1.0, 0, 1.9);
-        bladeGroup.add(blade);
-      }
-      scene.add(bladeGroup);
-
-      // C-Series rack servers (stack on the right)
-      const cGeom = new THREE.BoxGeometry(3, 0.6, 2.8);
-      const cGroup = new THREE.Group();
-      for (let i = 0; i < 3; i++) {
-        const c = new THREE.Mesh(cGeom, cSeriesMat);
-        c.position.set(4.5, -1.0 + i * 0.9, -1.0);
-        cGroup.add(c);
-      }
-      scene.add(cGroup);
-
-      // Storage array (front-right block)
-      const storageGeom = new THREE.BoxGeometry(3, 1.6, 2.0);
-      const storage = new THREE.Mesh(storageGeom, storageMat);
-      storage.position.set(4.5, 0.5, 2.0);
-      scene.add(storage);
-
-      // Ground-ish plane hint
-      const planeGeom = new THREE.PlaneGeometry(18, 10);
-      const planeMat = new THREE.MeshStandardMaterial({ color: 0x050712, metalness: 0, roughness: 1 });
-      const plane = new THREE.Mesh(planeGeom, planeMat);
-      plane.rotation.x = -Math.PI / 2;
-      plane.position.y = -1.3;
-      plane.receiveShadow = true;
-      scene.add(plane);
-
-      // Resize handling
-      setSize();
-      window.addEventListener("resize", setSize);
-
-      // Simple auto-rotation
-      let lastTime = 0;
-      function animate(time) {
-        const dt = (time - lastTime) / 1000 || 0;
-        lastTime = time;
-
-        scene.rotation.y += dt * 0.25; // rotate slowly
-
-        renderer.render(scene, camera);
-        requestAnimationFrame(animate);
-      }
-      requestAnimationFrame(animate);
-    })();
+    if (ucsSearchBtn && ucsSearchInput) {
+      ucsSearchBtn.addEventListener("click", runUcsSearch);
+      ucsSearchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") runUcsSearch();
+      });
+    }
   </script>
 </body>
 </html>
